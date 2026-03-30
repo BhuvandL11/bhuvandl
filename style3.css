@@ -446,7 +446,7 @@
         display: flex;
       }
       .nav-links {
-        display: none !important;
+        display: flex;
       }
       h1 { 
         font-size: 36px; 
@@ -698,7 +698,4 @@
       transition: none;
       background:none;
       
-    }
-    #ram{
-      width: 255px;
     }

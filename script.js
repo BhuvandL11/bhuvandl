@@ -2,17 +2,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ✅ Initialize EmailJS
     emailjs.init("YOUR_PUBLIC_KEY");
+// 📱 Mobile Menu
+let hamburger = document.getElementById("hamburger");
+let mobileNav = document.getElementById("mobileNav");
 
-    // 📱 Mobile Menu
-    let hamburger = document.getElementById("hamburger");
-    let mobileNav = document.getElementById("mobileNav");
+if (hamburger && mobileNav) {
 
-    if (hamburger && mobileNav) {
-        hamburger.onclick = function () {
-            hamburger.classList.toggle("active");
-            mobileNav.classList.toggle("active");
-        };
-    }
+    hamburger.onclick = function () {
+        mobileNav.classList.toggle("active");
+    };
+
+    // ✅ Close menu when link clicked
+    document.querySelectorAll(".mobile-nav-links a").forEach(link => {
+        link.addEventListener("click", () => {
+            mobileNav.classList.remove("active");
+        });
+    });
+}
 
     // 📩 Contact Form + EmailJS
     let btn = document.getElementById("button");
