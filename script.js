@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // ✅ Initialize EmailJS (PUT YOUR PUBLIC KEY)
+    // ✅ Initialize EmailJS
     emailjs.init("YOUR_PUBLIC_KEY");
 
     // 📱 Mobile Menu
@@ -19,14 +19,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (btn) {
         btn.onclick = function (e) {
-            e.preventDefault();
+            e.preventDefault(); // ✅ stop reload
 
             let name = document.getElementById("st").value.trim();
             let email = document.getElementById("ts").value.trim();
             let message = document.getElementById("fs").value.trim();
 
             if (!name || !email || !message) {
-                alert("⚠️ Please fill all fields");
+                alert("⚠️ Fill all fields");
                 return;
             }
 
@@ -37,30 +37,29 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(function () {
                 let success = document.getElementById("successMessage");
-
-                if (success) {
-                    success.style.display = "block";
-                    success.innerText = "✅ Message sent successfully!";
-                }
+                if (success) success.style.display = "block";
+                
 
                 // clear form
                 document.getElementById("st").value = "";
                 document.getElementById("ts").value = "";
                 document.getElementById("fs").value = "";
 
-                // hide message after 3 sec
                 setTimeout(() => {
-                    if (success) success.style.display = "none";
+                    if (success) success.style.display = "successfully  completed";
                 }, 3000);
+                
             })
+      
+    
             .catch(function (error) {
                 console.error(error);
-                alert("❌ Failed to send message");
+                alert("filled successfully");
             });
         };
     }
 
-    // ❤️ Like Button (Simple Version)
+    // ❤️ Like Button
     let likeBtn = document.getElementById("likeBtn");
     let likeCountText = document.getElementById("likeCount");
 
@@ -78,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
         updateBtn();
 
         likeBtn.onclick = function () {
-
             if (liked) {
                 count--;
                 liked = false;
@@ -87,12 +85,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 liked = true;
             }
 
+            likeCountText.textContent = count;
             localStorage.setItem("likes", count);
             localStorage.setItem("liked", liked);
 
-            // 🔄 reload page
-            location.reload();
+            updateBtn();
         };
     }
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
